@@ -4,6 +4,10 @@ const multer = require('multer');
 const Post = require('./api/models/post');
 const postsData = new Post();
 
+
+// App Config
+const PORT = process.env.PORT || 3000;
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads/')
@@ -61,4 +65,4 @@ app.post("/api/posts", upload.single("post-image"), (req, res) => {
     res.status(201).send(newPost);
 })
 
-app.listen(3000, () => console.log("Listening on http://localhost:3000/"));
+app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}/`));
